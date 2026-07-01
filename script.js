@@ -1,9 +1,10 @@
-// Mobile navigation, active link state, and profile-image fallback.
+// Mobile navigation, active link state, and image fallbacks.
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 const links = document.querySelectorAll(".nav-links a");
 const sections = document.querySelectorAll("main section[id]");
 const profilePhoto = document.querySelector(".profile-photo");
+const galleryPhotos = document.querySelectorAll(".system-image img");
 const year = document.querySelector("#year");
 
 if (year) {
@@ -29,6 +30,12 @@ if (profilePhoto) {
     profilePhoto.classList.add("is-hidden");
   });
 }
+
+galleryPhotos.forEach((photo) => {
+  photo.addEventListener("error", () => {
+    photo.classList.add("is-hidden");
+  });
+});
 
 const observer = new IntersectionObserver(
   (entries) => {

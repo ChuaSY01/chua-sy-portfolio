@@ -289,6 +289,7 @@ h1 {
 .metrics div,
 .education-card,
 .skills-shell article,
+.interest-card,
 .project-card,
 .timeline article,
 .contact-list a {
@@ -312,6 +313,9 @@ h1 {
 .education-card,
 .skills-shell p,
 .skill-list,
+.interest-card p,
+.interest-points,
+.system-shot figcaption,
 .project-card p,
 .timeline p,
 footer {
@@ -382,6 +386,84 @@ footer {
 
 .skills-shell h3 {
   color: var(--text);
+}
+
+.interest-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 28px;
+  padding: 30px;
+}
+
+.interest-copy h3 {
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.05;
+}
+
+.interest-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.interest-points li {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 11px;
+  color: var(--text);
+  background: rgba(124, 255, 107, 0.07);
+  font-size: 0.9rem;
+}
+
+.system-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.system-shot {
+  margin: 0;
+}
+
+.system-image {
+  position: relative;
+  display: grid;
+  min-height: 190px;
+  aspect-ratio: 4 / 3;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(124, 255, 107, 0.09), rgba(68, 215, 255, 0.08)),
+    var(--panel-2);
+}
+
+.system-image span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.system-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.system-image img.is-hidden {
+  display: none;
+}
+
+.system-shot figcaption {
+  margin-top: 8px;
+  font-size: 0.92rem;
 }
 
 .skill-list {
@@ -502,6 +584,7 @@ footer {
 
   .hero,
   .two-column,
+  .interest-card,
   .project-card {
     grid-template-columns: 1fr;
   }
@@ -518,6 +601,7 @@ footer {
   }
 
   .skills-shell,
+  .system-gallery,
   .timeline {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -550,6 +634,7 @@ footer {
 
   .skills-shell,
   .skills-shell .wide,
+  .system-gallery,
   .timeline {
     grid-template-columns: 1fr;
     grid-column: auto;
