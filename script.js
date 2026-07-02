@@ -1,11 +1,10 @@
-// Mobile navigation, active link state, and image fallbacks.
+// Mobile navigation, active section state, current year, and image fallbacks.
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
-const links = document.querySelectorAll(".nav-links a");
+const navItems = document.querySelectorAll(".nav-links a");
 const sections = document.querySelectorAll("main section[id]");
-const profilePhoto = document.querySelector(".profile-photo");
-const galleryPhotos = document.querySelectorAll(".system-image img");
 const year = document.querySelector("#year");
+const fallbackImages = document.querySelectorAll(".profile-photo, .gallery-image img");
 
 if (year) {
   year.textContent = new Date().getFullYear();
@@ -18,22 +17,16 @@ if (navToggle && navLinks) {
   });
 }
 
-links.forEach((link) => {
-  link.addEventListener("click", () => {
+navItems.forEach((item) => {
+  item.addEventListener("click", () => {
     navLinks.classList.remove("open");
     navToggle.setAttribute("aria-expanded", "false");
   });
 });
 
-if (profilePhoto) {
-  profilePhoto.addEventListener("error", () => {
-    profilePhoto.classList.add("is-hidden");
-  });
-}
-
-galleryPhotos.forEach((photo) => {
-  photo.addEventListener("error", () => {
-    photo.classList.add("is-hidden");
+fallbackImages.forEach((image) => {
+  image.addEventListener("error", () => {
+    image.classList.add("is-hidden");
   });
 });
 
@@ -41,8 +34,8 @@ const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-      links.forEach((link) => {
-        link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+      navItems.forEach((item) => {
+        item.classList.toggle("active", item.getAttribute("href") === `#${entry.target.id}`);
       });
     });
   },
